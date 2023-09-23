@@ -3,8 +3,12 @@ import * as api from './api'; // Import the API functions
 
 // Define an async thunk to fetch users
 export const fetchUsersAsync = createAsyncThunk('user/fetchUsers', async () => {
-  const users = await api.getUsers();
-  return users;
+  try {
+    const users = await api.getUsers();
+    return users;
+  } catch (error) {
+    throw error;
+  }
 });
 
 const userSlice = createSlice({
